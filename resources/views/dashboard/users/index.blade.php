@@ -27,14 +27,14 @@
                 @foreach ($users as $user)            
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ user->name }}</td>
-                        <td>{{ user->username }}</td>
-                        <td>{{ user->email }}</td>
-                        <td>@if(user->name) {{ "Admin" }} @else {{ "User" }} @endif </td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>@if($user->is_admin) {{ "Admin" }} @else {{ "User" }} @endif </td>
                         <td>
-                            <a href="/dashboard/users/{{ user->id }}" class="badge bg-info"><span data-feather="eye"></span></a>
-                            <a href="/dashboard/users/{{ user->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            <form action="/dashboard/users/{{ user->id }}" method="post" class="d-inline">
+                            <a href="/dashboard/users/{{ $user->username }}" class="badge bg-info"><span data-feather="eye"></span></a>
+                            <a href="/dashboard/users/{{ $user->username }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                            <form action="/dashboard/users/{{ $user->username }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0 " onclick="return confirm('Yakin?')"><span data-feather="x-circle"></span></button>
