@@ -66,7 +66,6 @@
     <script>
         const title = document.querySelector("#title");
         const slug = document.querySelector("#slug");
-
         title.addEventListener("keyup", function() {
             let preslug = title.value;
             preslug = preslug.replace(/ /g,"-");
@@ -76,30 +75,29 @@
         // const title = document.querySelector('#title');
         // const slug = document.querySelector('#slug');
         // title.addEventListener("change", function() {
-        //     fetch('/dashboard/posts/checkSlug?title=' + title.value)
+        //     fetch('/dashboard/posts/checkSlug?title=' . title.value)
         //     .then(response => response.json())
         //     .then(data => slug.value = data.slug)
         // });
-
         document.addEventListener('trix-file-accept', function(e){
             e.preventDefault();
         });
         
         function previewImage(){
-          const image = document.querySelector('#image');
-          const imgPreview = document.querySelector('.img-preview');
-          imgPreview.style.display = 'block';
-          const ofReader = new fileReader();
-          ofReader.readAsDataUrl(image.files[0]);
-          ofReader.onload = function(ofREvent){
-            imgPreview.src = ofREvent.target.result;
-          }
-
           // const image = document.querySelector('#image');
           // const imgPreview = document.querySelector('.img-preview');
           // imgPreview.style.display = 'block';
-          // const blob = URL.createObjectURL(image.files[0]);
-          // imgPreview.src = blob;
+          // const ofReader = new fileReader();
+          // ofReader.readAsDataUrl(image.files[0]);
+          // ofReader.onload = function(ofREvent){
+          //   imgPreview.src = ofREvent.target.result;
+          // }
+
+          const image = document.querySelector('#image');
+          const imgPreview = document.querySelector('.img-preview');
+          imgPreview.style.display = 'block';
+          const blob = URL.createObjectURL(image.files[0]);
+          imgPreview.src = blob;
         }
 
     </script>

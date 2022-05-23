@@ -35,7 +35,6 @@
     <script>
         const name = document.querySelector("#name");
         const slug = document.querySelector("#slug");
-
         name.addEventListener("keyup", function() {
             let preslug = name.value;
             preslug = preslug.replace(/ /g,"-");
@@ -49,12 +48,9 @@
         //     .then(response => response.json())
         //     .then(data => slug.value = data.slug)
         // });
-        // document.addEventListener('trix-file-accept', function(e){
-        //     e.preventDefault();
-        // });
-        
-        
-
+        document.addEventListener('trix-file-accept', function(e){
+            e.preventDefault();
+        });
     </script>
 
 @endsection

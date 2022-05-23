@@ -35,25 +35,22 @@
     <script>
         const name = document.querySelector("#name");
         const slug = document.querySelector("#slug");
-
         name.addEventListener("keyup", function() {
             let preslug = name.value;
             preslug = preslug.replace(/ /g,"-");
             slug.value = preslug.toLowerCase();
         });
 
-    //     const name = document.querySelector('#name');
-    //     const slug = document.querySelector('#slug');
-
-    //    name.addEventListener("change", function() {
-    //         fetch('/dashboard/posts/checkSlug?name=' . name.value)
-    //         .then(response => response.json())
-    //         .then(data => slug.value = data.slug)
-    //     });
-
-    //     document.addEventListener('trix-file-accept', function(e){
-    //         e.preventDefault();
-    //     });
+        // const name = document.querySelector('#name');
+        // const slug = document.querySelector('#slug');
+        // name.addEventListener("change", function() {
+        //     fetch('/dashboard/posts/checkSlug?name=' . name.value)
+        //     .then(response => response.json())
+        //     .then(data => slug.value = data.slug)
+        // });
+        document.addEventListener('trix-file-accept', function(e){
+            e.preventDefault();
+        });
     </script>
 
 @endsection
