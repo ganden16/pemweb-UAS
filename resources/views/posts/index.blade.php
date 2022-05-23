@@ -14,7 +14,7 @@
                 @endif
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cari.." name="search" value="{{ request('search') }}">
-                    <button class="btn btn-danger" type="submit">Cari</button>
+                    <button class="btn btn-warning" type="submit">Cari</button>
                 </div>
             </form>
         </div>
@@ -41,7 +41,7 @@
                                     </small>
                                 </p>
                                 <p class="class-text">{{ $post->excerpt }}</p>
-                                <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-primary">Read More</a>
+                                <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning">Read More</a>
                             </div>
                         </div>
                     </div>
