@@ -31,4 +31,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favorit::class);
     }
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }

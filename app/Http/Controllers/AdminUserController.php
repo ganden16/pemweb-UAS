@@ -59,7 +59,9 @@ class AdminUserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit', [
+            "user" => $user
+        ]);
     }
 
     /**
@@ -71,7 +73,12 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'is_admin' => 'required'
+        ]);
+        User::where('id', $user->id)
+            ->update($validatedData);
+        return redirect('/dashboard/users')->with('success', 'Akses User Berhasil Diperbarui');
     }
 
     /**
@@ -82,6 +89,7 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect('/dashboard/users')->with('success', 'User Berhasil Dihapus!');
     }
 }
