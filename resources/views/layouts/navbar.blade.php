@@ -25,7 +25,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <a class="dropdown-item" href="/profile"><i class="bi bi-person-fill"></i> Profile</a>
+                <a class="dropdown-item" href="/user"><i class="bi bi-person-fill"></i> Profile</a>
               </li>
               <li><hr class="dropdown-divider"></li>
               <li>
@@ -51,7 +51,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="/profile"><i class="bi bi-person-fill"></i> Profile</a>
+                  <a class="dropdown-item" href="/user"><i class="bi bi-person-fill"></i> Profile</a>
                 </li>
                 <li><hr class="dropdown-divider"></li>  
                 @can('admin')

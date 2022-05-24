@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class ProfileController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -60,7 +61,10 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('account.profile.edit', [
+            'user' => $user,
+            'title' => "Edit Profile"
+        ]);
     }
 
     /**
@@ -72,7 +76,24 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+            'address' => 'max:255',
+            'city' => 'max:255',
+            'telp' => 'max:255',
+            'email' => 'required|email',
+        ];
+
+        $validatedData = $request->validate($rules);
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('user-images');
+        }
+        User::where('id', $user->id)
+            ->update($validatedData);
+        return redirect('/user')->with('success', 'User Berhasil Diperbarui');
     }
 
     /**

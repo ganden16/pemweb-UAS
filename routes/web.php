@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\CategoryController;
@@ -11,7 +12,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
-use App\Http\Controllers\ProfileController;
+
 
 
 Route::get('/', function () {
@@ -48,4 +49,4 @@ Route::resource('/dashboard/users', AdminUserController::class)->middleware('adm
 
 Route::resource('/favorit', FavoritController::class)->middleware('auth');
 
-Route::resource('/profile', ProfileController::class)->middleware('auth');
+Route::resource('/user', UserController::class)->middleware('auth');

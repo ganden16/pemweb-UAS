@@ -1,20 +1,26 @@
 @extends('layouts.main')
 
 @section('container')
+  @if(session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
+        {{ session('success') }} 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>  
+  @endif
     <div class="container-fluid">
         <div class="row" >
           <div class="col col-lg-10 col-md-10 mb-5 mt-5" style="margin:auto;">
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
+                  <h3 class="profile-username mb-4">{{ $user->username }}</h3>
                     @if($user->image)                         
-                        <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $post->category->name }}" class="img-fluid">
-                        @else
+                        <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}" class=" img-circle rounded-circle profile-user-img img-responsive" style=" height:300px">
+                    @else
                         <img src="https://source.unsplash.com/300x300?{{ $user->name }}" class=" rounded-circle profile-user-img img-responsive img-circle"
                     @endif
-                </div>
-                <h3 class="profile-username ">{{ $user->username }}</h3>
-                <p class="text-muted ">Bergabung Sejak {{ $user->created_at }}</p>
+                    
+                <p class="text-muted mt-4 ">Bergabung Sejak {{ $user->created_at }}</p>
                 <hr>
                 <strong>
                     <i class="bi bi-person-circle"></i>
@@ -48,7 +54,9 @@
                   {{ $user->telp }}
                 </p>
                 <hr>
-                <a href="" class="btn btn-warning btn-block">Setting</a>
+                <a href="/user/{{ $user->username }}/edit" class="btn btn-warning btn-block">Setting</a>
+                </div>
+                
               </div>
             </div>      
           </div>
