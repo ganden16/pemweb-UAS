@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class AdminCategoryController extends Controller
 {
@@ -54,7 +55,12 @@ class AdminCategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:categories',
+            'image' => 'required|image|file|max:10000',
         ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('category-images');
+        }
         Category::create($validatedData);
         return redirect('/dashboard/categories')->with('success', 'Kategori Baru Berhasil Ditambahkan!');
     }
@@ -98,11 +104,18 @@ class AdminCategoryController extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
+
         ];
         if ($request->slug != $category->slug) {
             $rules['slug'] = 'required|unique:categories';
         }
         $validatedData = $request->validate($rules);
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('category-images');
+        }
         Category::where('id', $category->id)
             ->update($validatedData);
         return redirect('/dashboard/categories')->with('success', 'Kategori Berhasil Diperbarui');

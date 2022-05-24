@@ -24,34 +24,42 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'name' => 'Daging',
             'slug' => 'daging',
+            'image' => 'category-images/1.jpg'
         ]);
         Category::create([
             'name' => 'Sup',
             'slug' => 'sup',
+            'image' => 'category-images/2.jpg'
         ]);
         Category::create([
             'name' => 'Ayam',
             'slug' => 'ayam',
+            'image' => 'category-images/3.jpg'
         ]);
         Category::create([
             'name' => 'Ikan',
             'slug' => 'ikan',
+            'image' => 'category-images/4.jpg'
         ]);
         Category::create([
             'name' => 'Sambal',
             'slug' => 'sambal',
+            'image' => 'category-images/5.jpg'
         ]);
         Category::create([
             'name' => 'Tahu/Tempe',
             'slug' => 'tahu/tempe',
+            'image' => 'category-images/6.jpg'
         ]);
         Category::create([
             'name' => 'Telur',
             'slug' => 'telur',
+            'image' => 'category-images/7.jpg'
         ]);
         Category::create([
             'name' => 'Nasi',
             'slug' => 'nasi',
+            'image' => 'category-images/8.jpg'
         ]);
 
         Post::factory(32)->create();

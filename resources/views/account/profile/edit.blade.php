@@ -12,7 +12,7 @@
                                 <h3 class="profile-username text-center ">{{ $user->username }}</h3>
                                 <div class="d-flex justify-content-center mt-3">
                                     @if($user->image)                         
-                                        <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}" class="img-fluid img-circle rounded-circle profile-user-img img-responsive" style=" height:300px" onchange=previewImage()>
+                                        <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}" class="img-fluid img-circle rounded-circle profile-user-img img-responsive" onchange=previewImage()>
                                     @else
                                         <img src="https://source.unsplash.com/300x300?{{ $user->name }}" class=" rounded-circle profile-user-img img-responsive img-circle" >
                                     @endif
@@ -21,7 +21,7 @@
                                     <label for="image" class="form-label"><h6>Foto User</h6></label>
                                     <input type="hidden" name="oldImage" value="{{ $user->image }}">
                                     @if($user->image)
-                                     <img src="{{ asset('storage/' . $user->image ) }}" class="img-preview img-fluid mb-3 col-sm-3 d-flex ">
+                                     <img src="{{ asset('storage/' . $user->image ) }}" class="img-preview img-fluid mb-3 col-sm-5 ">
                                     @else
                                      <img class="img-preview img-fluid mb-3 col-sm-5">
                                     @endif

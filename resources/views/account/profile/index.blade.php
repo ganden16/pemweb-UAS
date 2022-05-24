@@ -14,11 +14,13 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <h3 class="profile-username mb-4">{{ $user->username }}</h3>
+                  <div class="d-flex justify-content-center mt-3">
                     @if($user->image)                         
-                        <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}" class=" img-circle rounded-circle profile-user-img img-responsive" style=" height:300px">
+                        <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}" class="img-fluid img-circle rounded-circle profile-user-img img-responsive" onchange=previewImage()>
                     @else
-                        <img src="https://source.unsplash.com/300x300?{{ $user->name }}" class=" rounded-circle profile-user-img img-responsive img-circle"
+                        <img src="https://source.unsplash.com/300x300?{{ $user->name }}" class=" rounded-circle profile-user-img img-responsive img-circle" >
                     @endif
+                  </div>
                     
                 <p class="text-muted mt-4 ">Bergabung Sejak {{ $user->created_at }}</p>
                 <hr>
