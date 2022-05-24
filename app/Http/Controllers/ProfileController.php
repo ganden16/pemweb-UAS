@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Favorit;
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class FavoritController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,9 @@ class FavoritController extends Controller
      */
     public function index()
     {
-
-        $user_id = auth()->user()->id;
-        return view('account.favorit.index', [
-            "title" => "Menu Favorit",
-            "posts" => Post::where('user_id', $user_id)->with('favorit')->get()
-
+        return view('account.profile.index', [
+            "title" => "Profile",
+            "user" => User::find(auth()->user()->id)
         ]);
     }
 
@@ -48,10 +44,10 @@ class FavoritController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Favorit  $favorit
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Favorit $favorit)
+    public function show(User $user)
     {
         //
     }
@@ -59,10 +55,10 @@ class FavoritController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Favorit  $favorit
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Favorit $favorit)
+    public function edit(User $user)
     {
         //
     }
@@ -71,31 +67,21 @@ class FavoritController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Favorit  $favorit
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Favorit $favorit)
+    public function update(Request $request, User $user)
     {
-        $validatedData = $request->validate([
-            "post_id" => 'required'
-        ]);
-        $user_id = auth()->user()->id;
-        // $favorit = Favorit::where('user_id', $user_id)->get();
-
-        if ($request->id != $favorit->id) {
-            Favorit::where('id', $request->id)
-                ->update($validatedData);
-            return redirect('/dashboard/posts')->with('success', 'Postingan Berhasil Diperbarui');
-        }
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Favorit  $favorit
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorit $favorit)
+    public function destroy(User $user)
     {
         //
     }

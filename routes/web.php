@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', function () {
@@ -19,20 +20,11 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/profile', function () {
-    return view('account.profile.index', [
-        "title" => "Profile",
-        "user" => User::find(auth()->user()->id)
-    ]);
-})->middleware('auth');
-
 Route::get('/about', function () {
     return view('tentangKami.index', [
         'title' => 'Tentang Kami'
     ]);
 });
-
-Route::get('/favorit', [FavoritController::class, 'index'])->middleware('auth');
 
 Route::get('/posts', [PostController::class, 'viewAllPosts']);
 Route::get('/posts/{post:slug}', [PostController::class, 'viewPost']);
@@ -53,3 +45,7 @@ Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'check
 Route::resource('/dashboard/categories', AdminCategoryController::class)->middleware('admin');
 
 Route::resource('/dashboard/users', AdminUserController::class)->middleware('admin');
+
+Route::resource('/favorit', FavoritController::class)->middleware('auth');
+
+Route::resource('/profile', ProfileController::class)->middleware('auth');

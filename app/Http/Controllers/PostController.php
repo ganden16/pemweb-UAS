@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Favorit;
 use App\Models\Category;
 use App\Models\User;
 
@@ -20,9 +21,10 @@ class PostController extends Controller
             $author = User::firstWhere('username', request('author'));
             $title = 'by ' . $author->name;
         }
+        $posts = Post::latest()->filter(request(['search', 'author', 'category']))->paginate(6)->withQueryString();
         return view('posts.index', [
             "title" => "Halaman Posts " . $title,
-            "posts" => Post::latest()->filter(request(['search', 'author', 'category']))->paginate(6)->withQueryString()
+            "posts" => $posts
         ]);
     }
 
