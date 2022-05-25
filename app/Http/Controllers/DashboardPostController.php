@@ -56,8 +56,6 @@ class DashboardPostController extends Controller
         if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
-
-        $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         Post::create($validatedData);
@@ -118,7 +116,6 @@ class DashboardPostController extends Controller
             }
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
-        $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
         Post::where('id', $post->id)
@@ -138,7 +135,7 @@ class DashboardPostController extends Controller
             Storage::delete($post->image);
         }
         Post::destroy($post->id);
-        return redirect('/dashboard/posts')->with('success', 'Postingan Berhasil Dihapus!');
+        return back()->with('success', 'Postingan Berhasil Dihapus!');
     }
 
     public function checkSlug(Request $request)

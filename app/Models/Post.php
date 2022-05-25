@@ -14,7 +14,7 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
     protected $guarded = ['id'];
-    protected $with = ['author', 'category', 'favorit'];
+    protected $with = ['category', 'favorit'];
 
     public function scopeFilter($query, array $filters)
     {
@@ -31,17 +31,6 @@ class Post extends Model
                 $query->where('slug', $category);
             });
         });
-
-        $query->when($filters['author'] ?? false, function ($query, $author) {
-            return $query->whereHas('author', function ($query) use ($author) {
-                $query->where('username', $author);
-            });
-        });
-    }
-
-    public function author()
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category()

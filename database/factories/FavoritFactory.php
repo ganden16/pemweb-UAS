@@ -17,8 +17,8 @@ class FavoritFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => mt_rand(1, 4),
-            'post_id' => mt_rand(1, 32)
+            'user_id' => mt_rand(1, 5),
+            'post_id' => mt_rand(1, 40)
         ];
     }
 }

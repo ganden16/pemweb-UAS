@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(4)->create();
-        Favorit::factory(60)->create();
+        User::factory(5)->create();
+        Favorit::factory(20)->create();
 
         Category::create([
             'name' => 'Daging',
@@ -62,6 +62,6 @@ class DatabaseSeeder extends Seeder
             'image' => 'category-images/8.jpg'
         ]);
 
-        Post::factory(32)->create();
+        Post::factory(40)->create();
     }
 }

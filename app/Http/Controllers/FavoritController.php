@@ -6,6 +6,7 @@ use App\Models\Favorit;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+
 class FavoritController extends Controller
 {
     /**
@@ -17,10 +18,10 @@ class FavoritController extends Controller
     {
 
         $user_id = auth()->user()->id;
+        $posts = Favorit::where('user_id', $user_id)->with('post')->get();
         return view('account.favorit.index', [
             "title" => "Menu Favorit",
-            "posts" => Post::where('user_id', $user_id)->with('favorit')->get()
-
+            "posts" => $posts,
         ]);
     }
 
@@ -40,9 +41,17 @@ class FavoritController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Favorit $favorit)
     {
-        //
+        $validatedData = $request->validate([
+            'post_id' => 'required'
+        ]);
+        $validatedData['user_id'] = auth()->user()->id;
+        if ($request->post_id == $favorit->id) {
+            return back()->with('success', 'Favorit Sudah Ada!');
+        }
+        Favorit::create($validatedData);
+        return back()->with('success', 'Favorit Berhasil Ditambahkan!');
     }
 
     /**
@@ -76,17 +85,6 @@ class FavoritController extends Controller
      */
     public function update(Request $request, Favorit $favorit)
     {
-        $validatedData = $request->validate([
-            "post_id" => 'required'
-        ]);
-        $user_id = auth()->user()->id;
-        // $favorit = Favorit::where('user_id', $user_id)->get();
-
-        if ($request->id != $favorit->id) {
-            Favorit::where('id', $request->id)
-                ->update($validatedData);
-            return redirect('/dashboard/posts')->with('success', 'Postingan Berhasil Diperbarui');
-        }
     }
 
     /**
@@ -97,6 +95,7 @@ class FavoritController extends Controller
      */
     public function destroy(Favorit $favorit)
     {
-        //
+        Favorit::destroy($favorit->id);
+        return back()->with('success', 'Favorit Berhasil Dihapus!');
     }
 }

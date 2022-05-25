@@ -17,22 +17,32 @@ class PostController extends Controller
             $category = Category::firstWhere('slug', request('category'));
             $title = 'in ' . $category->name;
         }
-        if (request('author')) {
-            $author = User::firstWhere('username', request('author'));
-            $title = 'by ' . $author->name;
-        }
-        $posts = Post::latest()->filter(request(['search', 'author', 'category']))->paginate(6)->withQueryString();
+        $posts = Post::latest()->filter(request(['search', 'category']))->paginate(6)->withQueryString();
+        $user_id = auth()->user()->id;
         return view('posts.index', [
             "title" => "Halaman Posts " . $title,
-            "posts" => $posts
+            "posts" => $posts,
+            "favorits" => Favorit::where('user_id', $user_id)->with('post')->get()
         ]);
     }
 
     public function viewPost(Post $post)
     {
+        $user_id = auth()->user()->id;
+        $favorits = Favorit::where('user_id', $user_id)->with('post')->get();
+        $favorit = false;
+        $favor = false;
+        foreach ($favorits as $fav) {
+            if ($post->id == $fav->post_id) {
+                $favorit = true;
+                $favor = $fav->id;
+            }
+        }
         return view('posts.post', [
             "title" => "Post",
-            "post" => $post
+            "post" => $post,
+            "favorit" => $favorit,
+            "fav" =>  $favor
         ]);
     }
 }
