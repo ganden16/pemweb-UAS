@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(5)->create();
         Favorit::factory(20)->create();
-
         Category::create([
             'name' => 'Daging',
             'slug' => 'daging',
@@ -47,8 +46,8 @@ class DatabaseSeeder extends Seeder
             'image' => 'category-images/5.jpg'
         ]);
         Category::create([
-            'name' => 'Tahu-Tempe',
-            'slug' => 'tahu/tempe',
+            'name' => 'Tahu/Tempe',
+            'slug' => 'tahu-tempe',
             'image' => 'category-images/6.jpg'
         ]);
         Category::create([
@@ -61,7 +60,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'nasi',
             'image' => 'category-images/8.jpg'
         ]);
-
         Post::factory(40)->create();
     }
 }

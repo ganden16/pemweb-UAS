@@ -21,6 +21,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Access</th>
                     <th scope="col">Action</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -31,14 +32,18 @@
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
                         <td>@if($user->is_admin) {{ "Admin" }} @else {{ "User" }} @endif </td>
+                        @if(auth()->user()->id == $user->id)
+                        <td><b class="text-center">---You---</b></td>
+                        @elseif(auth()->user()->id != $user->id)
                         <td>
-                            <a href="/dashboard/users/{{ $user->username }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            <form action="/dashboard/users/{{ $user->username }}" method="post" class="d-inline">
+                            <a href="/dashboard/users/{{ $user->username }}/edit" class="badge bg-warning" ><span data-feather="edit"></span></a>
+                            <form action="/dashboard/users/{{ $user->username }}" method="post" class="d-inline" >
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0 " onclick="return confirm('Yakin?')"><span data-feather="x-circle"></span></button>
                             </form>                       
-                        </td>
+                        </td> 
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
