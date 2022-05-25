@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             'image' => 'category-images/5.jpg'
         ]);
         Category::create([
-            'name' => 'Tahu/Tempe',
+            'name' => 'Tahu-Tempe',
             'slug' => 'tahu/tempe',
             'image' => 'category-images/6.jpg'
         ]);
