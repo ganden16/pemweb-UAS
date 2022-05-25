@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Favorit;
 use App\Models\Category;
-use App\Models\User;
 
 class PostController extends Controller
 {
+
     public function viewAllPosts()
     {
         $title = '';
@@ -17,32 +17,46 @@ class PostController extends Controller
             $category = Category::firstWhere('slug', request('category'));
             $title = 'in ' . $category->name;
         }
-        $posts = Post::latest()->filter(request(['search', 'category']))->paginate(6)->withQueryString();
-        $user_id = auth()->user()->id;
-        return view('posts.index', [
-            "title" => "Halaman Posts " . $title,
-            "posts" => $posts,
-            "favorits" => Favorit::where('user_id', $user_id)->with('post')->get()
-        ]);
+        $posts = Post::latest()->filter(request(['search', 'category']))->paginate(9)->withQueryString();
+        if (auth()->user()) {
+            $user_id = auth()->user()->id;
+            return view('posts.index', [
+                "title" => "Halaman Posts " . $title,
+                "posts" => $posts,
+                "favorits" => Favorit::where('user_id', $user_id)->with('post')->get()
+            ]);
+        } else {
+            return view('posts.index', [
+                "title" => "Halaman Posts " . $title,
+                "posts" => $posts
+            ]);
+        }
     }
 
     public function viewPost(Post $post)
     {
-        $user_id = auth()->user()->id;
-        $favorits = Favorit::where('user_id', $user_id)->with('post')->get();
-        $favorit = false;
-        $favor = false;
-        foreach ($favorits as $fav) {
-            if ($post->id == $fav->post_id) {
-                $favorit = true;
-                $favor = $fav->id;
+        if (auth()->user()) {
+            $user_id = auth()->user()->id;
+            $favorits = Favorit::where('user_id', $user_id)->with('post')->get();
+            $favorit = false;
+            $favor = false;
+            foreach ($favorits as $fav) {
+                if ($post->id == $fav->post_id) {
+                    $favorit = true;
+                    $favor = $fav->id;
+                }
             }
+            return view('posts.post', [
+                "title" => "Post",
+                "post" => $post,
+                "favorit" => $favorit,
+                "fav" =>  $favor
+            ]);
+        } else {
+            return view('posts.post', [
+                "title" => "Post",
+                "post" => $post,
+            ]);
         }
-        return view('posts.post', [
-            "title" => "Post",
-            "post" => $post,
-            "favorit" => $favorit,
-            "fav" =>  $favor
-        ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use App\Models\Favorit;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
@@ -24,7 +23,6 @@ class Post extends Model
                     ->orWhere('body', 'like', '%' . $search . '%');
             });
         });
-
 
         $query->when($filters['category'] ?? false, function ($query, $category) {
             return $query->whereHas('category', function ($query) use ($category) {

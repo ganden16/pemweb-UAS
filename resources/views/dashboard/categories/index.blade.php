@@ -27,9 +27,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
-                            <a href="/dashboard/categories/{{ $category->slug }}" class="badge bg-info"><span data-feather="eye"></span></a>
-                            <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            <form action="/dashboard/categories/{{ $category->slug }}" method="post" class="d-inline">
+                            <a href="/dashboard/categories/{{ $category->slug }}" class="badge bg-info mb-2"><span data-feather="eye"></span></a>
+                            <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-warning mb-2"><span data-feather="edit"></span></a>
+                            <form action="/dashboard/categories/{{ $category->slug }}" method="post" class="d-inline mb-2">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0 " onclick="return confirm('Yakin?')"><span data-feather="x-circle"></span></button>

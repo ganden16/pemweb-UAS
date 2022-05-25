@@ -20,24 +20,34 @@
                 <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid ">
             @endif
             <h4>{{ $post->id }}</h4>
-            @if($favorit)
-                <form action="/favorit/{{$fav}}" method="post" class="d-flex justify-content-end">
-                    @method('delete')
-                    @csrf
-                    <input type="hidden" value="{{ $fav }}" name="post_id">
-                    <button type="submit" class="btn">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
-                </form>
+            @if(auth()->user())    
+                @if($favorit)
+                    <form action="/favorit/{{$fav}}" method="post" class="d-flex justify-content-end">
+                        @method('delete')
+                        @csrf
+                        <input type="hidden" value="{{ $fav }}" name="post_id">
+                        <button type="submit" class="btn">
+                            <i class="bi bi-heart-fill"></i>
+                        </button>
+                    </form>
+                @else
+                    <form action="/favorit" method="post" class="d-flex justify-content-end">
+                        @csrf
+                        <input type="hidden" value="{{ $post->id }}" name="post_id">
+                        <button type="submit" class="btn" >
+                            <i class="bi bi-heart" ></i>
+                        </button>
+                    </form>
+                @endif
             @else
-                <form action="/favorit" method="post" class="d-flex justify-content-end">
-                    @csrf
-                    <input type="hidden" value="{{ $post->id }}" name="post_id">
-                    <button type="submit" class="btn" >
-                        <i class="bi bi-heart" ></i>
-                    </button>
-                </form>
-             @endif
+            <form action="/favorit" method="post" class="d-flex justify-content-end">
+                @csrf
+                <input type="hidden" value="{{ $post->id }}" name="post_id">
+                <button type="submit" class="btn" >
+                    <i class="bi bi-heart" ></i>
+                </button>
+            </form>
+            @endif
             <article class="my-3 fs-5">
                 {!! $post->body !!}
             </article>

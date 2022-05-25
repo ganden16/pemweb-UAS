@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-
 @if(session()->has('success'))
 <div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
     {{ session('success') }} 
@@ -14,9 +13,6 @@
             <form action="/posts">
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
-                @endif
-                @if (request('author'))
-                    <input type="hidden" name="author" value="{{ request('author') }}">
                 @endif
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cari.." name="search" value="{{ request('search') }}">
@@ -40,18 +36,28 @@
                             @endif
                             <div class="card-body d-inline">
                                 <h4 class="">{{ $post->id }}</h4>
-                                @foreach ($favorits as $favorit)
-                                @if($favorit->post_id == $post->id)
-                                    <form action="/favorit/{{ $favorit->id }}" method="post" class="d-flex justify-content-end">
-                                        @method('delete')
-                                        @csrf
-                                        <input type="hidden" value="{{ $favorit->id }}" name="post_id">
-                                        <button type="submit" class="btn">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </form>
+                                @if(auth()->user())   
+                                    @foreach ($favorits as $favorit)
+                                    @if($favorit->post_id == $post->id)
+                                        <form action="/favorit/{{ $favorit->id }}" method="post" class="d-flex justify-content-end">
+                                            @method('delete')
+                                            @csrf
+                                            <input type="hidden" value="{{ $favorit->id }}" name="post_id">
+                                            <button type="submit" class="btn">
+                                                <i class="bi bi-heart-fill"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                    @endforeach
+                                @else
+                                <form action="/favorit" method="post" class="d-flex justify-content-end">
+                                    @csrf
+                                    <input type="hidden" value="{{ $post->id }}" name="post_id">
+                                    <button type="submit" class="btn" >
+                                        <i class="bi bi-heart" ></i>
+                                    </button>
+                                </form>
                                 @endif
-                                @endforeach
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="class-text">{{ $post->excerpt }}</p>
                                 <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning">Read More</a>
