@@ -52,14 +52,6 @@
                                         </form>
                                     @endif
                                     @endforeach
-                                @else
-                                <form action="/favorit" method="post" class="d-flex justify-content-end">
-                                    @csrf
-                                    <input type="hidden" value="{{ $post->id }}" name="post_id">
-                                    <button type="submit" class="btn" >
-                                        <i class="bi bi-heart" ></i>
-                                    </button>
-                                </form>
                                 @endif
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="class-text">{{ $post->excerpt }}</p>
