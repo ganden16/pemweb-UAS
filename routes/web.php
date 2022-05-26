@@ -55,4 +55,4 @@ Route::resource('/favorit', FavoritController::class)->middleware('auth');
 
 Route::resource('/user', UserController::class)->middleware('auth');
 
-Route::get('/back/posts/{post:slug}', [BackController::class, 'back']);
+Route::get('/back/posts/{post}', [BackController::class, 'back']);

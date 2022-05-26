@@ -51,7 +51,7 @@
             <article class="my-3 fs-5">
                 {!! $post->body !!}
             </article>
-            <form action="/back/posts/{{ $post->slug }}">
+            <form action="/back/posts/{{ $post->slug }}" method="get">
                 <input type="hidden" name="paginate" value="{{ request()->paginate }}">
                 <input type="hidden" name="page" value="{{ $page }}">
                 <button type="submit" class="btn btn-warning">Kembali</button>
