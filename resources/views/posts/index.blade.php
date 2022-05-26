@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+
 @if(session()->has('success'))
 <div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
     {{ session('success') }} 
@@ -26,7 +27,7 @@
             <div class="row"> 
                 @foreach ($posts as $post)
                     <div class="col-md-4 mb-3">
-                        <div class="card" >
+                        <div class="card" id="{{ $post->slug }}">
                             <div class="position-absolute px-3 py-2 " style="background-color:rgba(0, 0, 0, 0.5)"><a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none text-white">{{ $post->category->name }}</a>
                             </div>
                             @if($post->image)                         
@@ -42,7 +43,9 @@
                                         <form action="/favorit/{{ $favorit->id }}" method="post" class="d-flex justify-content-end">
                                             @method('delete')
                                             @csrf
-                                            <input type="hidden" value="{{ $favorit->id }}" name="post_id">
+                                            <input type="hidden" name="index" value={{ true }}>
+                                            <input type="hidden" name="slug" value={{ $post->slug }}>
+                                            <input type="hidden" name="post_id" value={{ $post->id }}>
                                             <button type="submit" class="btn">
                                                 <i class="bi bi-heart-fill"></i>
                                             </button>

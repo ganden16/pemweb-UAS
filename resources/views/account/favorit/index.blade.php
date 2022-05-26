@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 @foreach ($posts as $post)
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4 mb-3" id="{{ $post->slug }}">
                         <div class="card" >
                             <div class="position-absolute px-3 py-2 " style="background-color:rgba(0, 0, 0, 0.5)"><a href="/posts?category={{ $post->post->category->slug }}" class="text-decoration-none text-white">{{ $post->post->category->name }}</a></div>
                             @if($post->post->image)                         
@@ -32,7 +32,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->post->title }}</h5>
                                 <p class="class-text">{{ $post->post->excerpt }}</p>
-                                <a href="/posts/{{ $post->post->slug }}" class="text-decoration-none btn btn-warning">Read More</a>
+                                <form action="/posts/{{ $post->post->slug }}">
+                                    <input type="hidden"  name="paginate" value="{{ true }}">
+                                    <button type="submit" class="btn btn-warning">Read More</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -42,4 +45,7 @@
     @else
         <p class="text-center fs-4">No Post Found.</p>
     @endif   
+    <div class="d-flex justify-content-end">
+        {{ $posts->links() }}
+    </div>
 @endsection

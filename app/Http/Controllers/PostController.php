@@ -12,12 +12,13 @@ class PostController extends Controller
 
     public function viewAllPosts()
     {
+        $paginate = 9;
         $title = '';
         if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
             $title = 'in ' . $category->name;
         }
-        $posts = Post::latest()->filter(request(['search', 'category']))->paginate(9)->withQueryString();
+        $posts = Post::latest()->filter(request(['search', 'category']))->paginate($paginate)->withQueryString();
         if (auth()->user()) {
             $user_id = auth()->user()->id;
             return view('posts.index', [
@@ -35,6 +36,9 @@ class PostController extends Controller
 
     public function viewPost(Post $post)
     {
+        $paginate = 9;
+        $page = ceil($post->id / $paginate);
+
         if (auth()->user()) {
             $user_id = auth()->user()->id;
             $favorits = Favorit::where('user_id', $user_id)->with('post')->get();
@@ -50,12 +54,15 @@ class PostController extends Controller
                 "title" => "Post",
                 "post" => $post,
                 "favorit" => $favorit,
-                "fav" =>  $favor
+                "fav" =>  $favor,
+                "page" => $page,
+
             ]);
         } else {
             return view('posts.post', [
                 "title" => "Post",
                 "post" => $post,
+                "page" => $page
             ]);
         }
     }

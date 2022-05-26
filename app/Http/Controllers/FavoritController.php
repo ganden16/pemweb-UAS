@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Favorit;
-use App\Models\Post;
 use Illuminate\Http\Request;
 
 
@@ -18,10 +17,11 @@ class FavoritController extends Controller
     {
 
         $user_id = auth()->user()->id;
-        $posts = Favorit::where('user_id', $user_id)->with('post')->get();
+        $posts = Favorit::where('user_id', $user_id)->with('post');
+        $paginate = $posts->count();
         return view('account.favorit.index', [
             "title" => "Menu Favorit",
-            "posts" => $posts,
+            "posts" => $posts->paginate($paginate)->withQueryString()
         ]);
     }
 
@@ -96,6 +96,12 @@ class FavoritController extends Controller
     public function destroy(Favorit $favorit)
     {
         Favorit::destroy($favorit->id);
+        $paginate = 9;
+        $post_id = request()->post_id;
+        $page = ceil($post_id / $paginate);
+        if (request()->index) {
+            return redirect('posts/?page=' . $page . '&#' . request()->slug)->with('success', 'Favorit Berhasil Dihapus!');
+        }
         return back()->with('success', 'Favorit Berhasil Dihapus!');
     }
 }

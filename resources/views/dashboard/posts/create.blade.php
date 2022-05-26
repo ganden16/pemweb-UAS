@@ -58,8 +58,7 @@
               <input id="body" type="hidden" name="body" value="{{ old('body') }}">
               <trix-editor input="body"></trix-editor>
             </div>
-
-            <button type="submit" class="btn btn-primary">Create Post</button>
+            <button type="submit" class="btn btn-warning">Create Post</button>
         </form>
     </div>
 

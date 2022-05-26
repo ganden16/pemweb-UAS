@@ -51,7 +51,12 @@
             <article class="my-3 fs-5">
                 {!! $post->body !!}
             </article>
-            <a href="/posts" class="d-block mt-3">Kembali ke Posts</a>
+            <form action="/back/posts/{{ $post->slug }}">
+                <input type="hidden" name="paginate" value="{{ request()->paginate }}">
+                <input type="hidden" name="page" value="{{ $page }}">
+                <button type="submit" class="btn btn-warning">Kembali</button>
+            </form>
+            
         </div>
     </div>
 </div>
