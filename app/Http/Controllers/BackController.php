@@ -12,6 +12,6 @@ class BackController extends Controller
         if (request()->paginate) {
             return redirect('/favorit/#' . $post->slug);
         }
-        return redirect('posts/?page=' . request()->page . '&#' . $post->slug);
+        return redirect('/posts/?page=' . request()->page . '&#' . $post->slug);
     }
 }
