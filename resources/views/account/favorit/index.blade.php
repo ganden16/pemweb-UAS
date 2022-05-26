@@ -33,7 +33,7 @@
                                 <h5 class="card-title">{{ $post->post->title }}</h5>
                                 <p class="class-text">{{ $post->post->excerpt }}</p>
                                 <form action="/posts/{{ $post->post->slug }}">
-                                    <input type="hidden"  name="keFavorit" value="{{ true }}">
+                                    <input type="hidden"  name="favorit" value="{{ true }}">
                                     <button type="submit" class="btn btn-warning">Read More</button>
                                 </form>
                             </div>

@@ -56,10 +56,13 @@
                 <input type="hidden" name="page" value="{{ $page }}">
                 <button type="submit" class="btn btn-warning">Kembali</button>
             </form> --}}
-            @if (request()->keFavorit)
-            <a href={{ '/favorit/#' . $post->slug }}>Kembali</a>
+            @if (request()->favorit)
+                <a class="btn btn-warning" href="{{ '/favorit/#' . $post->slug }}">Kembali</a>
+            @elseif(request()->category)
+                <a class="btn btn-warning" href="{{ '/posts?category=' . request()->category . '&#' . $post->slug }}">Kembali</a>
+            
             @else
-            <a href={{ '/posts/?page=' . $page . '&#' . $post->slug }}>Kembali</a>
+            <a class="btn btn-warning" href="{{ '/posts/?page=' . $page . '&#' . $post->slug }}">Kembali</a>
             @endif
             
         </div>

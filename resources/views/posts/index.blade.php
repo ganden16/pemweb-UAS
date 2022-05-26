@@ -63,7 +63,14 @@
                                 @endif
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="class-text">{{ $post->excerpt }}</p>
+                                @if(request()->category)
+                                <form action="/posts/{{ $post->slug }}">
+                                    <input type="hidden" name="category" value="{{ request()->category }}"> 
+                                    <button type="submit" class="btn btn-warning">Read More</button>
+                                </form>
+                                @else
                                 <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning">Read More</a>
+                                @endif
                             </div>
                         </div>
                     </div>  

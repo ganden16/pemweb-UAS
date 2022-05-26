@@ -9,9 +9,9 @@ class BackController extends Controller
 {
     public function back(Post $post)
     {
-        if (request()->paginate) {
-            return redirect('/favorit/#' . $post->slug);
-        }
-        return redirect('/posts/?page=' . request()->page . '&#' . $post->slug);
+        // if (request()->paginate) {
+        //     return redirect('/favorit/#' . $post->slug);
+        // }
+        // return redirect('/posts/?page=' . request()->page . '&#' . $post->slug);
     }
 }

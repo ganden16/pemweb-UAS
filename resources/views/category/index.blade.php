@@ -5,7 +5,7 @@
     <div class="row">
         @foreach ($categories as $category)         
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <a href="/posts?category={{ $category->slug }}">
                 <img src="{{ asset('storage/' . $category->image ) }}" class="card-img-top" alt="{{ $category->name }}">
                 <div class="card-img-overlay d-flex align-items-center p-0 ">
