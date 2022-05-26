@@ -34,7 +34,7 @@
                         <td>@if($user->is_admin) {{ "Admin" }} @else {{ "User" }} @endif </td>
                         @if(auth()->user()->id == $user->id)
                         <td><b class="text-center">---You---</b></td>
-                        @elseif(auth()->user()->id != $user->id)
+                        @else
                         <td>
                             <a href="/dashboard/users/{{ $user->username }}/edit" class="badge bg-warning" ><span data-feather="edit"></span></a>
                             <form action="/dashboard/users/{{ $user->username }}" method="post" class="d-inline" >
