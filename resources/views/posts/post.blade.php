@@ -51,11 +51,16 @@
             <article class="my-3 fs-5">
                 {!! $post->body !!}
             </article>
-            <form action="/back/posts/{{ $post->slug }}" method="get">
+            {{-- <form action="/back/posts/{{ $post->slug }}" method="get">
                 <input type="hidden" name="paginate" value="{{ request()->paginate }}">
                 <input type="hidden" name="page" value="{{ $page }}">
                 <button type="submit" class="btn btn-warning">Kembali</button>
-            </form>
+            </form> --}}
+            @if (request()->keFavorit)
+            <a href={{ '/favorit/#' . $post->slug }}>Kembali</a>
+            @else
+            <a href={{ '/posts/?page=' . $page . '&#' . $post->slug }}>Kembali</a>
+            @endif
             
         </div>
     </div>

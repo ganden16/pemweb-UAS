@@ -100,7 +100,7 @@ class FavoritController extends Controller
         $post_id = request()->post_id;
         $page = ceil($post_id / $paginate);
         if (request()->index) {
-            return redirect('posts/?page=' . $page . '&#' . request()->slug)->with('success', 'Favorit Berhasil Dihapus!');
+            return redirect('/posts/?page=' . $page . '&#' . request()->slug)->with('success', 'Favorit Berhasil Dihapus!');
         }
         return back()->with('success', 'Favorit Berhasil Dihapus!');
     }
