@@ -24,7 +24,7 @@ class PostController extends Controller
             return view('posts.index', [
                 "title" => "Halaman Posts " . $title,
                 "posts" => $posts,
-                "favorits" => Favorit::where('user_id', $user_id)->with('post')->get()
+                "favorits" => Favorit::where('user_id', $user_id)->get()
             ]);
         } else {
             return view('posts.index', [
