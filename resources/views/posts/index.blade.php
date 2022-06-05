@@ -35,11 +35,10 @@
                             <img src="https://source.unsplash.com/500x500?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}">
                             @endif
                             <div class="card-body d-inline">
-                                <h4 class="">{{ $post->id }}</h4>
                                 @if(auth()->user())   
                                     @foreach ($favorits as $favorit)
                                     @if($favorit->post_id == $post->id)
-                                        <form action="/favorit/{{ $favorit->id }}" method="post" class="d-flex justify-content-end">
+                                        <form action="/favorit/{{ $favorit->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <input type="hidden" name="index" value={{ true }}>
@@ -52,15 +51,21 @@
                                     @endif
                                     @endforeach
                                 @endif
+                                <div class="d-flex mb-3 justify-content-end">
+                                    <small >{{ $posts[0]->created_at->diffForHumans() }}</small>
+                                </div>
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="class-text">{{ $post->excerpt }}</p>
+                                
                                 @if(request()->category)
-                                <form action="/posts/{{ $post->slug }}">
+                                <form action="/posts/{{ $post->slug }}" class=" d-flex justify-content-center">
                                     <input type="hidden" name="category" value="{{ request()->category }}"> 
                                     <button type="submit" class="btn btn-warning">Read More</button>
                                 </form>
                                 @else
-                                <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning">Read More</a>
+                                <div class="tombol d-flex justify-content-center">
+                                    <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning" >Read More</a>
+                                </div>
                                 @endif
                             </div>
                         </div>

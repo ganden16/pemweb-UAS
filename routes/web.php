@@ -1,8 +1,7 @@
 <?php
 
-use App\Models\User;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BackController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -14,12 +13,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 
-
-
-
 Route::get('/', function () {
     return view('home.index', [
-        "title" => "Home"
+        "title" => "Home",
+        "posts" => Post::latest()->limit(3)->get()
     ]);
 });
 
