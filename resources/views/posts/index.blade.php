@@ -1,8 +1,9 @@
 @extends('layouts.main')
-
+<br/><br/><br/>
 @section('container')
 
 @if(session()->has('success'))
+
 <div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
     {{ session('success') }} 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -11,14 +12,13 @@
     <h1 class="mb-3 text-center">{{ $title }}</h1>
     <div class="row justify-content-center mb-3">
         <div class="col-md-6">
-            <form action="/posts">
+            <form action="/posts" style="text-align: center;">
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Cari.." name="search" value="{{ request('search') }}">
-                    <button class="btn btn-warning" type="submit">Cari</button>
-                </div>
+                <form>
+                    <input type="text2" name="search" placeholder="Search.." value="{{ request('search') }}">
+                </form>
             </form>
         </div>
     </div>
