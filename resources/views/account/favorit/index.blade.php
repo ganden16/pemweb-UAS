@@ -1,13 +1,13 @@
 @extends('layouts.main')
-
+<br><br><br><br>
 @section('container')
+@if ($posts->count())
 @if(session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
         {{ session('success') }} 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>  
 @endif
-@if ($posts->count())
         <div class="container">
             <div class="row">
                 @foreach ($posts as $post)

@@ -25,7 +25,7 @@
             <div class="col-4 col-lg-1 col-md-6"><br/><br/><br/>
             </div>
         </div>
-        <div class="row" style="text-align: justify;">
+        <div class="row me-5" style="text-align: justify;">
             <div class="col-12 col-lg-8 col-md-12"><br/>
             </div>     
             <div class="col-12 col-lg-4 col-md-12" ><br/>

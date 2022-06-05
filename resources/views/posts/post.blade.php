@@ -1,14 +1,13 @@
 @extends('layouts.main')
-
+<br><br><br>
 @section('container')
-
+<div class="container">
     @if(session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
         {{ session('success') }} 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>  
     @endif
-<div class="container">
     <div class="row justify-content-center mb-5">
         <div class="col-md-8">
             <h1 class="mb-3">{{ $post->title }}</h1>
