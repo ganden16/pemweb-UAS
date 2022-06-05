@@ -38,6 +38,7 @@
   --bs-success: #198754;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc800;
+  --bs-kuning: #FBBC04;
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
@@ -3027,6 +3028,12 @@ textarea.form-control-lg {
 .btn:disabled, .btn.disabled, fieldset:disabled .btn {
   pointer-events: none;
   opacity: 0.65;
+}
+
+.btn-kuning {
+  color: #fff;
+  background-color: #ffc800;
+  border-color: #ffc800;
 }
 
 .btn-primary {
@@ -11720,7 +11727,7 @@ header.masthead .masthead-heading {
 
 section#contact {
   background-color: #ffc738;
-  background-image: url("..//img/map-image.png");
+  background-image: url("../img/map-image.png");
   background-repeat: no-repeat;
   background-position: center;
 }

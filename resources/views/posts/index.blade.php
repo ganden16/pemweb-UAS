@@ -1,12 +1,13 @@
 @extends('layouts.main')
 <br/><br/><br/>
 @section('container')
-        @if(session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
-            {{ session('success') }} 
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>  
-        @endif
+
+@if(session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show col-lg-6" style="margin:10px auto;" role="alert">  
+    {{ session('success') }} 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>  
+@endif
     <h1 class="mb-3 text-center">{{ $title }}</h1>
     <div class="row justify-content-center mb-3">
         <div class="col-md-6">
@@ -14,7 +15,9 @@
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
+                <form>
                     <input type="text2" name="search" placeholder="Search.." value="{{ request('search') }}">
+                </form>
             </form>
         </div>
     </div>
