@@ -56,7 +56,7 @@ class DashboardPostController extends Controller
         if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100) . '....';
 
         Post::create($validatedData);
         return redirect('/dashboard/posts')->with('success', 'Postingan Baru Berhasil Ditambahkan!');
@@ -116,7 +116,7 @@ class DashboardPostController extends Controller
             }
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100) . '....';
 
         Post::where('id', $post->id)
             ->update($validatedData);

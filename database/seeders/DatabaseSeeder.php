@@ -8,6 +8,7 @@ use App\Models\Favorit;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +19,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
+        User::factory(3)->create();
+        User::create([
+            'name' => 'admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+            'is_admin' => true,
+        ]);
+        User::create([
+            'name' => 'user',
+            'username' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
+        ]);
         Favorit::factory(20)->create();
         Category::create([
             'name' => 'Daging',
