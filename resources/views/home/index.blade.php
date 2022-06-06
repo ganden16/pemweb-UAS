@@ -36,8 +36,33 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="row g-5">
-                    
+            </div>
+        </section>
+        <hr>
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center mb-3">
+                    <h2 class="section-heading text-uppercase ">Terakhir Resep Diupdate</h2>
+                </div>
+                <div class="container">
+                    <div class="row"> 
+                        @foreach ($postsu as $post)
+                            <div class="col-md-4 mb-3">
+                                <div class="card" id="{{ $post->slug }}">
+                                    @if($post->image)                         
+                                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}" class="img-fluid">
+                                    @else
+                                    <img src="https://source.unsplash.com/500x500?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}">
+                                    @endif
+                                    <div class="card-body d-inline">
+                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                        <small class="d-block me-auto">{{ $posts[0]->created_at->diffForHumans() }}</small>
+                                        <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning d-block mt-4">Read More</a>
+                                    </div>
+                                </div>
+                            </div>  
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </section>

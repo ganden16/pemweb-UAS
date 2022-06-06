@@ -16,7 +16,8 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', function () {
     return view('home.index', [
         "title" => "Home",
-        "posts" => Post::latest()->limit(3)->get()
+        "posts" => Post::orderBy('id', 'desc')->limit(3)->get(),
+        "postsu" => Post::orderBy('updated_at', 'desc')->limit(3)->get()
     ]);
 });
 
