@@ -52,7 +52,7 @@
                                     @endforeach
                                 @endif
                                 <div class="d-flex mb-3 justify-content-end">
-                                    <small >{{ $posts[0]->created_at->diffForHumans() }}</small>
+                                    <small >{{ $post->created_at->diffForHumans()}}</small>
                                 </div>
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="class-text">{{ $post->excerpt }}</p>

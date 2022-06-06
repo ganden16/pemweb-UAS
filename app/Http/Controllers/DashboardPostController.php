@@ -118,6 +118,7 @@ class DashboardPostController extends Controller
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100) . '....';
+        $validatedData['updated_at'] = now();
 
         Post::where('id', $post->id)
             ->update($validatedData);

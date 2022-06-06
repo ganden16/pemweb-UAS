@@ -28,7 +28,7 @@
                                     @endif
                                     <div class="card-body d-inline">
                                         <h5 class="card-title">{{ $post->title }}</h5>
-                                        <small class="d-block me-auto">{{ $posts[0]->created_at->diffForHumans() }}</small>
+                                        <small class="d-block me-auto">{{ $post->created_at->diffForHumans() }}</small>
                                         <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning d-block mt-4">Read More</a>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                     @endif
                                     <div class="card-body d-inline">
                                         <h5 class="card-title">{{ $post->title }}</h5>
-                                        <small class="d-block me-auto">{{ $posts[0]->created_at->diffForHumans() }}</small>
+                                        <small class="d-block me-auto">{{ $post->updated_at->diffForHumans() }}</small>
                                         <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning d-block mt-4">Read More</a>
                                     </div>
                                 </div>
