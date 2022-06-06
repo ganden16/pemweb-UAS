@@ -59,12 +59,12 @@
             </div>
             <div class="col-md-4 ">
                 <div class="row mb-3 shadow p-3 d-flex justify-content-center">
-                    <h5 class="mb-4">Menu Lain Terkait <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a> </h5>
+                    <h5 class="mb-4 text-center">Menu Lain Terkait <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a> </h5>
                     @foreach ($posts_category as $post)
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark ">
                         <div class="card mb-3 p-2" style="max-heigt: 13rem">
                            @if($post->image)
-                            <div style="max-height:90px; overflow:hidden">
+                            <div style="max-height:150px; overflow:hidden">
                                 <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="img-fluid ">
                             </div>
                             @else
@@ -83,7 +83,7 @@
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark ">
                         <div class="card mb-3 p-2" style="max-heigt: 13rem">
                            @if($post->image)
-                            <div style="max-height:100px; overflow:hidden">
+                            <div style="max-height:130px; overflow:hidden">
                                 <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="img-fluid ">
                             </div>
                             @else
@@ -101,10 +101,11 @@
                     @foreach ($posts_category as $post)
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark ">
                         <div class="card mb-3 p-2" >
-                           @if($post->image)
-                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="justify-content-center " style="max-heigt: 13rem; max-width: 15rem">
+                            <div style="max-height:180px; overflow:hidden">
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="img-fluid ">
+                            </div>
                             @else
-                                <img src="https://source.unsplash.com/400x200?{{ $post->image }}" alt="{{ $post->image }}" style="max-heigt: 20rem; max-width: 20rem" class="justify-content-center"> 
+                                <img src="https://source.unsplash.com/400x200?{{ $post->image }}" alt="{{ $post->image }}" class="img-fluid"> 
                             @endif
                             <div class="card-body">
                               <h5 class="card-text">{{ $post->title }}</h5>
