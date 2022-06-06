@@ -13,21 +13,22 @@ class PostController extends Controller
     {
         $paginate = 9;
         $title = '';
+        $title = 'Semua Resep';
         if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
-            $title = 'in ' . $category->name;
+            $title = 'Resep Kategori ' . $category->name;
         }
         $posts = Post::latest()->filter(request(['search', 'category']))->paginate($paginate)->withQueryString();
         if (auth()->user()) {
             $user_id = auth()->user()->id;
             return view('posts.index', [
-                "title" => "Halaman Posts " . $title,
+                "title" => $title,
                 "posts" => $posts,
                 "favorits" => Favorit::where('user_id', $user_id)->get()
             ]);
         } else {
             return view('posts.index', [
-                "title" => "Halaman Posts " . $title,
+                "title" => $title,
                 "posts" => $posts
             ]);
         }
