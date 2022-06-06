@@ -41,7 +41,7 @@
                                         <form action="/favorit/{{ $favorit->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
-                                            <input type="hidden" name="index" value={{ true }}>
+                                            <input type="hidden" name="page" value="{{ request()->page }}">
                                             <input type="hidden" name="slug" value={{ $post->slug }}>
                                             <input type="hidden" name="post_id" value={{ $post->id }}>
                                             <button type="submit" class="btn">

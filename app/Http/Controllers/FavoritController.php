@@ -96,11 +96,8 @@ class FavoritController extends Controller
     public function destroy(Favorit $favorit)
     {
         Favorit::destroy($favorit->id);
-        $paginate = 9;
-        $post_id = request()->post_id;
-        $page = ceil($post_id / $paginate);
-        if (request()->index) {
-            return redirect('/posts/?page=' . $page . '&#' . request()->slug)->with('success', 'Favorit Berhasil Dihapus!');
+        if (request()->page) {
+            return redirect('/posts/?page=' . request()->page . '&#' . request()->slug)->with('success', 'Favorit Berhasil Dihapus!');
         }
         return back()->with('success', 'Favorit Berhasil Dihapus!');
     }
