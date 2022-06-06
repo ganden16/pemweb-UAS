@@ -101,6 +101,7 @@
                     @foreach ($posts_category as $post)
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark ">
                         <div class="card mb-3 p-2" >
+                            @if($post->image)
                             <div style="max-height:180px; overflow:hidden">
                                 <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="img-fluid ">
                             </div>
