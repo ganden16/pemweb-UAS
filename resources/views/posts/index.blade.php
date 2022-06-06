@@ -57,16 +57,11 @@
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="class-text">{{ $post->excerpt }}</p>
                                 
-                                @if(request()->category)
                                 <form action="/posts/{{ $post->slug }}" class=" d-flex justify-content-center">
-                                    <input type="hidden" name="category" value="{{ request()->category }}"> 
+                                    <input type="hidden" name="category" value="{{ request()->category }}">
+                                    <input type="hidden" name="page" value="{{ request()->page }}">
                                     <button type="submit" class="btn btn-warning">Read More</button>
                                 </form>
-                                @else
-                                <div class="tombol d-flex justify-content-center">
-                                    <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-warning" >Read More</a>
-                                </div>
-                                @endif
                             </div>
                         </div>
                     </div>  

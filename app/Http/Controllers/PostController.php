@@ -9,7 +9,6 @@ use App\Models\Category;
 
 class PostController extends Controller
 {
-
     public function viewAllPosts()
     {
         $paginate = 9;
@@ -36,9 +35,10 @@ class PostController extends Controller
 
     public function viewPost(Post $post)
     {
-        $paginate = 9;
-        $page = ceil($post->id / $paginate);
-
+        $category_id = $post->category->id;
+        $posts_category = Post::where('category_id', $category_id)->get();
+        $posts_latest = Post::orderBy('id', 'desc')->limit(3)->get();
+        $posts_update = Post::orderBy('updated_at', 'desc')->limit(3)->get();
         if (auth()->user()) {
             $user_id = auth()->user()->id;
             $favorits = Favorit::where('user_id', $user_id)->with('post')->get();
@@ -55,14 +55,17 @@ class PostController extends Controller
                 "post" => $post,
                 "favorit" => $favorit,
                 "fav" =>  $favor,
-                "page" => $page,
-
+                "posts_category" =>  $posts_category,
+                "posts_latest" => $posts_latest,
+                "posts_update" => $posts_update
             ]);
         } else {
             return view('posts.post', [
                 "title" => "Post",
                 "post" => $post,
-                "page" => $page
+                "posts_category" =>  $posts_category,
+                "posts_latest" => $posts_latest,
+                "posts_update" => $posts_update
             ]);
         }
     }
