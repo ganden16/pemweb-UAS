@@ -8,8 +8,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>  
         @endif
-        <div class="row ps-5">
-            <div class="col-md-8 mb-5">
+        <div class="row">
+            <div class="col-md-8 mb-5 p-3">
                 <h1 class="mb-3">{{ $post->title }}</h1>
                 @if($post->image)
                     <div style="max-height:400px; overflow:hidden">
@@ -58,58 +58,56 @@
                 @endif 
             </div>
             <div class="col-md-4 ">
-                <div class="row mb-3 shadow p-4 ">
+                <div class="row mb-3 shadow p-3 d-flex justify-content-center">
                     <h5 class="mb-4">Menu Lain Terkait <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a> </h5>
                     @foreach ($posts_category as $post)
-                    <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark">
-                        <div class="card mb-3 p-2" style="width: 15rem">
+                    <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark ">
+                        <div class="card mb-3 p-2" style="max-heigt: 13rem">
                            @if($post->image)
-                            <div style="max-height:400px; overflow:hidden">
+                            <div style="max-height:90px; overflow:hidden">
                                 <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="img-fluid ">
                             </div>
                             @else
                                 <img src="https://source.unsplash.com/1200x400?{{ $post->image }}" alt="{{ $post->image }}" class="img-fluid ">
                             @endif
                             <div class="card-body">
-                              <h6 class="card-text">{{ $post->title }}</h6>
+                              <h5 class="card-text">{{ $post->title }}</h5>
                             </div>
                         </div>
                     </a>         
                     @endforeach
                 </div>
                 <div class="row mb-3 shadow p-3 d-flex justify-content-center">
-                    <h5 class="mb-4">Menu Baru Restry</h5>
+                    <h4 class="mb-4 text-center">Menu Baru Restry</h4>
                     @foreach ($posts_latest as $post)
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark ">
-                        <div class="card mb-3 p-2" style="width: 15rem">
+                        <div class="card mb-3 p-2" style="max-heigt: 13rem">
                            @if($post->image)
-                            <div style="max-height:400px; overflow:hidden">
+                            <div style="max-height:100px; overflow:hidden">
                                 <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="img-fluid ">
                             </div>
                             @else
                                 <img src="https://source.unsplash.com/1200x400?{{ $post->image }}" alt="{{ $post->image }}" class="img-fluid ">
                             @endif
                             <div class="card-body">
-                              <h6 class="card-text">{{ $post->title }}</h6>
+                              <h5 class="card-text">{{ $post->title }}</h5>
                             </div>
                         </div>
                     </a>         
                     @endforeach
                 </div>
                 <div class="row mb-3 shadow p-3 d-flex justify-content-center">
-                    <h5 class="mb-4">Terakhir Menu Diupdate</h5>
+                    <h4 class="mb-4 text-center">Terakhir Menu Diupdate</h4>
                     @foreach ($posts_category as $post)
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark ">
-                        <div class="card mb-3 p-2" style="width: 15rem">
+                        <div class="card mb-3 p-2" >
                            @if($post->image)
-                            <div style="max-height:400px; overflow:hidden">
-                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="img-fluid ">
-                            </div>
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image}}" class="justify-content-center " style="max-heigt: 13rem; max-width: 15rem">
                             @else
-                                <img src="https://source.unsplash.com/1200x400?{{ $post->image }}" alt="{{ $post->image }}" class="img-fluid ">
+                                <img src="https://source.unsplash.com/400x200?{{ $post->image }}" alt="{{ $post->image }}" style="max-heigt: 20rem; max-width: 20rem" class="justify-content-center"> 
                             @endif
                             <div class="card-body">
-                              <h6 class="card-text">{{ $post->title }}</h6>
+                              <h5 class="card-text">{{ $post->title }}</h5>
                             </div>
                         </div>
                     </a>         
