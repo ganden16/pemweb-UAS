@@ -36,7 +36,7 @@ class PostController extends Controller
     public function viewPost(Post $post)
     {
         $category_id = $post->category->id;
-        $posts_category = Post::where('category_id', $category_id)->limit(3)->get();
+        $posts_category = Post::where('category_id', $category_id)->where('id', '!=', $post->id)->limit(3)->get();
         $posts_latest = Post::orderBy('id', 'desc')->limit(3)->get();
         $posts_update = Post::orderBy('updated_at', 'desc')->limit(3)->get();
         if (auth()->user()) {
