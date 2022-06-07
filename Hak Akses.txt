@@ -1,0 +1,14 @@
+Hak Akses Website Restry
+
+Login Admin 
+Email 	    : admin@gmail.com
+Password    : password
+
+Login User 
+Email 	    : user@gmail.com
+Password    : password
+
+Jika melakukan registrasi, otomatis memiliki hak akses sebagai user, sehingga tidak bisa mengakses dashboard admin.
+
+Nama file database damjmegh_belajar3.sql
+
