@@ -19,7 +19,6 @@
                             @else
                             <img src="https://source.unsplash.com/500x500?{{ $post->post->category->name }}" class="card-img-top"
                             @endif
-                            alt="{{ $post->post->category->name }}">
                                     <form action="/favorit/{{ $post->id }}" method="post" class="d-flex justify-content-end">
                                         @method('delete')
                                         @csrf
