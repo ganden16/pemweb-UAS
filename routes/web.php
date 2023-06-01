@@ -14,23 +14,21 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 
 Route::get('/', function () {
-    return view('home.index', [
-        "title" => "Home",
-        "posts" => Post::orderBy('id', 'desc')->limit(3)->get(),
-        "postsu" => Post::orderBy('updated_at', 'desc')->limit(3)->get()
-    ]);
+	return view('home.index', [
+		"title" => "Home",
+		"posts" => Post::orderBy('id', 'desc')->limit(3)->get(),
+		"postsu" => Post::orderBy('updated_at', 'desc')->limit(3)->get()
+	]);
 });
 
 Route::get('/about', function () {
-    return view('tentangKami.index', [
-        'title' => 'Tentang Kami'
-    ]);
+	return view('tentangKami.index', [
+		'title' => 'Tentang Kami'
+	]);
 });
 
 Route::get('/posts', [PostController::class, 'viewAllPosts']);
 Route::get('/posts/{post:slug}', [PostController::class, 'viewPost']);
-// Route::get('/posts', [PostController::class, 'viewAllPostsAdmin'])->middleware('auth');
-// Route::get('/posts/{post:slug}', [PostController::class, 'viewPostAdmin'])->middleware('auth');
 
 Route::get('/category', [CategoryController::class, 'viewAllCategory']);
 
@@ -53,4 +51,15 @@ Route::resource('/favorit', FavoritController::class)->middleware('auth');
 
 Route::resource('/user', UserController::class)->middleware('auth');
 
-// Route::get('/back/posts/{post}', [BackController::class, 'back']);
+Route::get('/akses', function () {
+	return response()->json([
+		"admin" => [
+			"email" => "admin@gmail.com",
+			"password"=>"password"
+		],
+		"user" => [
+			"email" => "user@gmail.com",
+			"password"=>"password"
+		]
+	]);
+});
